@@ -11,4 +11,5 @@ package model;
  */
 public interface Company {  
     public String setCompany(String name, int cnpj, Adress adress, String branch);
+    public String getCompany();
 }

@@ -12,13 +12,14 @@ package model;
 public class Employee implements Company {
 
     private int id;
+    private Object company;
     private String name;
     private String subname;
     private Date birthDate;
     private int RG;
     private int CPF;
     private Adress adress;
-
+    
     public Employee(int id, String name, String subname, Date birthDate, int RG, int CPF, Adress adress) {
         this.id = id;
         this.name = name;
@@ -87,9 +88,16 @@ public class Employee implements Company {
     }
 
     @Override
+    public String getCompany(){
+        return "";
+    }
+    
+    @Override
     public String setCompany(String name, int cnpj, Adress adress, String branch) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    
 
     @Override
     public String toString() {
