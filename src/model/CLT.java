@@ -9,83 +9,49 @@ package model;
  *
  * @author vini
  */
-public class CLT {
-    private float salary;
-    private float fgts;
-    private float inss;
-    private boolean vacations;
-    private float irrf;
+public class CLT extends Contract {
 
-    public CLT(float salary, float fgts, float inss, boolean vacations, float irrf) {
-        this.salary = salary;
-        this.fgts = fgts;
-        this.inss = inss;
-        this.vacations = vacations;
-        this.irrf = irrf;
+    private double salary;
+    private double fgts;
+
+    public CLT(int id, String name, String subname, Date birthDate, int RG, int CPF, Adress adress, String companyName, int cnpj, Adress companyAdress, String branch, Date dateStart, int contractNumber, double salary) {
+        super(id, name, subname, birthDate, RG, CPF, adress, companyName, cnpj, companyAdress, branch, dateStart, contractNumber);
+        this.setSalary(salary);
     }
 
-    public float getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
-    public float getFgts() {
-        return fgts;
+    public double calculateLiquidSalary() {
+        return this.getSalary() - this.calculateINSS();
     }
 
-    public void setFgts(float fgts) {
-        this.fgts = fgts;
+    public double calculateFGTS() {
+        return this.getSalary() * 0.08;
     }
 
-    public float getInss() {
-        return inss;
+    public double calculateINSS() {
+        if (this.getSalary() <= 1693.72) {
+            return this.getSalary() * 0.08;
+        } else if (this.getSalary() > 1693.72 && this.getSalary() <= 2822.90) {
+            return this.getSalary() * 0.09;
+        } else {
+            return this.getSalary() * 0.11;
+        }
     }
 
-    public void setInss(float inss) {
-        this.inss = inss;
-    }
-
-    public boolean isVacations() {
-        return vacations;
-    }
-
-    public void setVacations(boolean vacations) {
-        this.vacations = vacations;
-    }
-
-    public float getIrrf() {
-        return irrf;
-    }
-
-    public void setIrrf(float irrf) {
-        this.irrf = irrf;
-    }
-    
-    public float calculateLiquidSalary(){
-        return 0;
-    }
-    
-    public float calculateFGTS(){
-        return 0;
-    }
-    
-    public float calculateINSS(){
-        return 0;
-    }
-    public float calculateIRRF(){
-        return 0;
-    }
-    public boolean verifyVacations(){
-        return true;
-    }
 
     @Override
     public String toString() {
-        return "CLT{" + "salary=" + salary + ", fgts=" + fgts + ", inss=" + inss + ", vacations=" + vacations + ", irrf=" + irrf + '}';
+        return super.toString()
+                + "\n Saláro bruto: " + this.getSalary()
+                + "\n Salário liquido" + this.calculateLiquidSalary()
+                + "\n FGTS: " + this.calculateFGTS()
+                + "\n INSS: " + this.calculateINSS();
     }
-    
-    
 }

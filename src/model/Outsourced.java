@@ -9,14 +9,17 @@ package model;
  *
  * @author vini
  */
-public class Outsourced {
+public class Outsourced  extends Contract{
     
     private int invoice;
 
-    public Outsourced(int invoice) {
-        this.invoice = invoice;
-    }
+    public Outsourced(int id, String name, String subname, Date birthDate, int RG, int CPF, Adress adress, String companyName, int cnpj, Adress companyAdress, String branch, Date dateStart, int contractNumber, int invoice) {
+        super(id, name, subname, birthDate, RG, CPF, adress, companyName, cnpj, companyAdress, branch, dateStart, contractNumber);
+        this.setInvoice(invoice);
+    }   
 
+
+    
     public int getInvoice() {
         return invoice;
     }

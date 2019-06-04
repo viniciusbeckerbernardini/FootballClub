@@ -9,15 +9,18 @@ package model;
  *
  * @author vini
  */
-public class ServiceProviders {
+public class ServiceProviders extends Outsourced {
+
     private String function;
     private int workLoad;
-    private float unhealthy;
+    private double unhealthy;
+    private double payment;
 
-    public ServiceProviders(String function, int workLoad, float unhealthy) {
-        this.function = function;
-        this.workLoad = workLoad;
-        this.unhealthy = unhealthy;
+    public ServiceProviders(int id, String name, String subname, Date birthDate, int RG, int CPF, Adress adress, String companyName, int cnpj, Adress companyAdress, String branch, Date dateStart, int contractNumber, int invoice, String function, int workLoad, float unhealthy) {
+        super(id, name, subname, birthDate, RG, CPF, adress, companyName, cnpj, companyAdress, branch, dateStart, contractNumber, invoice);
+        this.setFunction(function);
+        this.setWorkLoad(workLoad);
+        this.setUnhealthy(unhealthy);
     }
 
     public String getFunction() {
@@ -36,7 +39,7 @@ public class ServiceProviders {
         this.workLoad = workLoad;
     }
 
-    public float getUnhealthy() {
+    public double getUnhealthy() {
         return unhealthy;
     }
 
@@ -44,10 +47,33 @@ public class ServiceProviders {
         this.unhealthy = unhealthy;
     }
 
+    public double getPayment() {
+        return payment;
+    }
+
+    public void setPayment(float payment) {
+        this.payment = payment;
+    }
+
+    public double calculateUnhealthy() {
+        if (this.getUnhealthy() == 1) {
+            return this.getPayment() * 0.1;
+        } else if (this.getUnhealthy() == 2) {
+            return this.getPayment() * 0.15;
+        } else if (this.getUnhealthy() == 3) {
+            return this.getPayment() * 0.2;
+        } else {
+            return 0;
+        }
+    }
+
     @Override
     public String toString() {
-        return "ServiceProviders{" + "function=" + function + ", workLoad=" + workLoad + ", unhealthy=" + unhealthy + '}';
+        return super.toString()
+                + "\nFunção: " + this.getFunction()
+                + "\nCarga horária: " + this.getWorkLoad()
+                + "\n Pagamento: " + this.getPayment()
+                + "\nInsalubridade: " + this.getUnhealthy();
     }
-    
-    
+
 }

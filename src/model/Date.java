@@ -14,11 +14,6 @@ public class Date {
     private byte month;
     private int year;
 
-    public Date(byte day, byte month, int year) {
-        this.day = day;
-        this.month = month;
-        this.year = year;
-    }
 
     public byte getDay() {
         return day;
@@ -46,8 +41,7 @@ public class Date {
 
     @Override
     public String toString() {
-        return "Date{" + "day=" + day + ", month=" + month + ", year=" + year + '}';
+        return this.getDay()+"/"+this.getMonth()+"/"+this.getYear();
     }
-    
     
 }

@@ -10,6 +10,6 @@ package model;
  * @author vini
  */
 public interface Company {  
-    public String setCompany(String name, int cnpj, Adress adress, String branch);
+    public void setCompany(String name, int cnpj, Adress adress, String branch);
     public String getCompany();
 }

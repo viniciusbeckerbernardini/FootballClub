@@ -9,25 +9,26 @@ package model;
  *
  * @author vini
  */
-public class Employee implements Company {
+public abstract class Employee implements Company {
 
     private int id;
-    private Object company;
+    private String company;
     private String name;
     private String subname;
     private Date birthDate;
     private int RG;
     private int CPF;
     private Adress adress;
-    
-    public Employee(int id, String name, String subname, Date birthDate, int RG, int CPF, Adress adress) {
-        this.id = id;
-        this.name = name;
-        this.subname = subname;
-        this.birthDate = birthDate;
-        this.RG = RG;
-        this.CPF = CPF;
-        this.adress = adress;
+
+    public Employee(int id, String name, String subname, Date birthDate, int RG, int CPF, Adress adress, String companyName, int cnpj, Adress companyAdress, String branch) {
+        this.setId(id);
+        this.setName(name);
+        this.setSubname(subname);
+        this.setBirthDate(birthDate);
+        this.setRG(RG);
+        this.setCPF(CPF);
+        this.setAdress(adress);
+        this.setCompany(companyName, cnpj, companyAdress, branch);
     }
 
     public int getId() {
@@ -37,8 +38,7 @@ public class Employee implements Company {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
+
     public String getName() {
         return name;
     }
@@ -88,20 +88,27 @@ public class Employee implements Company {
     }
 
     @Override
-    public String getCompany(){
-        return "";
+    public String getCompany() {
+        return this.company;
     }
-    
+
     @Override
-    public String setCompany(String name, int cnpj, Adress adress, String branch) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setCompany(String name, int cnpj, Adress adress, String branch) {
+        this.company = "\nNome da empresa: " + name
+                + "\nCNPJ: " + cnpj
+                + "\nEndereço:" + adress
+                + "\nRamo: " + branch;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Employee{" + "name=" + name + ", subname=" + subname + ", birthDate=" + birthDate + ", RG=" + RG + ", CPF=" + CPF + ", adress=" + adress + '}';
+        return "\nFuncionário: " + this.getName() + " " + this.getSubname()
+                + "ID do funcionário" +this.getId()
+                + "\nData de nascimento: " + this.getBirthDate()
+                + "\nRG: " + this.getRG()
+                + "\nCPF: " + this.getCPF()
+                + "\nEndereço: " + this.getAdress()
+                + "\nCompanhia: "+this.getCompany();
     }
 
 }

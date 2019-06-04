@@ -9,15 +9,13 @@ package model;
  *
  * @author vini
  */
-public class BoardDirectors {
-    private String departament;
-    private String login;
-    private String password;
+public class BoardDirectors extends CLT {
 
-    public BoardDirectors(String departament, String login, String password) {
-        this.departament = departament;
-        this.login = login;
-        this.password = password;
+    private String departament;
+
+    public BoardDirectors(int id, String name, String subname, Date birthDate, int RG, int CPF, Adress adress, String companyName, int cnpj, Adress companyAdress, String branch, Date dateStart, int contractNumber, double salary, String departament) {
+        super(id, name, subname, birthDate, RG, CPF, adress, companyName, cnpj, companyAdress, branch, dateStart, contractNumber, salary);
+        this.setDepartament(departament);
     }
 
     public String getDepartament() {
@@ -28,45 +26,10 @@ public class BoardDirectors {
         this.departament = departament;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
-    public void registerEmployee(){
-        
-    }
-    
-    public void fireEmployee(){
-        
-    }
-    
-    public void updateEmployee(){
-        
-    }
-    
-    public void login(){
-        
-    }
-    
-    public void logout(){
-        
-    }
-
     @Override
     public String toString() {
-        return "BoardDirectors{" + "departament=" + departament + ", login=" + login + ", password=" + password + '}';
+        return super.toString()
+                + "\nDireção do departamento de :" + this.getDepartament();
     }
-    
+
 }

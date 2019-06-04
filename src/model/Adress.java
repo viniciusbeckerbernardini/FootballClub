@@ -17,14 +17,6 @@ public class Adress {
     private String city;
     private String state;
 
-    public Adress(String street, int number, String neighborhood, String city, String state) {
-        this.street = street;
-        this.number = number;
-        this.neighborhood = neighborhood;
-        this.city = city;
-        this.state = state;
-    }
-
     public String getStreet() {
         return street;
     }
@@ -67,8 +59,11 @@ public class Adress {
 
     @Override
     public String toString() {
-        return "Adress{" + "street=" + street + ", number=" + number + ", neighborhood=" + neighborhood + ", city=" + city + ", state=" + state + '}';
+        return "\nRua: " + this.getStreet()
+                + "\nNúmero: " + this.getNumber()
+                + "\nBairro: " + this.getNeighborhood()
+                + "\nCidade" + this.getCity()
+                + "\nEstado: " + this.getState();
     }
-    
-    
+
 }
