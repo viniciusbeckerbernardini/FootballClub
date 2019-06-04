@@ -9,7 +9,9 @@ import java.util.Scanner;
 import model.Admin;
 import model.Adress;
 import model.Athletes;
+import model.BoardDirectors;
 import model.Date;
+import model.TechnicalCommittee;
 
 /**
  *
@@ -131,24 +133,12 @@ public class Main {
                             contractNumber = scan.nextInt();
                             System.out.println("Salário");
                             salary = scan.nextDouble();
-                            System.out.println("Posição do jogador: ");
-                            String position = scan.next();
-                            System.out.println("É titular? (S/N)");
-                            boolean positionOwner;
-                            if (scan.next().equals("S")) {
-                                positionOwner = true;
-                            } else {
-                                positionOwner = false;
-                            }
-                            System.out.println("Está lesionado? (S/N)");
-                            boolean injury;
-                            if (scan.next().equals("S")) {
-                                injury = true;
-                            } else {
-                                injury = false;
-                            }
-                            Athletes a = new Athletes(id, name, subname, birthDate, RG, CPF, adress, companyName, cnpj, companyAdress, branch, dateStart, contractNumber, salary, position, positionOwner, injury);
-                            System.out.println(a);
+                            scan.nextLine();
+                            System.out.println("Especilização: ");
+                            String specealization = scan.nextLine();
+                            TechnicalCommittee tc = new TechnicalCommittee(id, name, subname, birthDate, RG, CPF, adress, companyName, cnpj, companyAdress, branch, dateStart, contractNumber, salary, specealization);
+                            admin.registerTechnicalComittee(tc);
+                            System.out.println(tc);
                             id++;
                         } else if (op2Case1 == 2) {
                             System.out.println("Digite o nome do integrante da comissão técnica: ");
@@ -205,7 +195,13 @@ public class Main {
                             contractNumber = scan.nextInt();
                             System.out.println("Salário: ");
                             salary = scan.nextDouble();
-
+                            System.out.println("Departamento: ");
+                            scan.nextLine();
+                            String departament = scan.nextLine();
+                            BoardDirectors b = new BoardDirectors(id, name, subname, birthDate, RG, CPF, adress, companyName, cnpj, companyAdress, branch, dateStart, contractNumber, salary, departament);
+                            admin.registerBoardDirector(b);
+                            System.out.println(b);
+                            id++;
                         } else if (op2Case1 == 3) {
                             System.out.println("Digite o nome do integrante da comissão técnica: ");
                             name = scan.next();
@@ -288,12 +284,23 @@ public class Main {
                             }
                             Athletes a = new Athletes(id, name, subname, birthDate, RG, CPF, adress, companyName, cnpj, companyAdress, branch, dateStart, contractNumber, salary, position, positionOwner, injury);
                             System.out.println(a);
+                            admin.registerAthlete(a);
+                            
                         }
                     } else if (op1Case1 == 2) {
 
                     }
                     break;
                 case 2:
+                    System.out.println("LISTANDO FUNCIONÁRIOS: ");
+                    System.out.println("-----------------------");
+                    System.out.println(admin.getAthletesList());
+                    System.out.println("-----------------------");
+                    System.out.println(admin.getBoardDirectorsList());
+                    System.out.println("-----------------------");
+                    System.out.println(admin.getTechnicalCommitteeList());
+                    System.out.println("-----------------------");
+                    System.out.println(admin.getServiceProvidersList());
                     break;
                 case 0:
                     System.out.println("Desligando...");
